@@ -1,0 +1,199 @@
+{% extends "base.html" %} {% block content %}
+<script>
+    function printReport() {
+        const printContent = document.getElementById('report-section').innerHTML;
+        const printWindow = window.open('', '', 'width=800,height=600');
+        printWindow.document.write(`
+            <html>
+            <head>
+                <title>Print Report</title>
+                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+            </head>
+            <body class="p-6 text-gray-800 bg-white">
+                ${printContent}
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+    }
+</script>
+<section class="text-gray-400 bg-gray-900 body-font min-h-screen">
+    <div class="container px-5 py-8 mx-auto h-full">
+        <div class="flex flex-col md:flex-row gap-8 h-full">
+            <!-- Form Section (Left) -->
+            <div class="w-full md:w-1/2 h-full">
+                <div class="flex border-2 rounded-lg border-gray-800 p-8 h-full overflow-y-auto">
+                    <form class="w-full" method="POST" enctype="multipart/form-data">
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="age">
+                                    Age</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" step="1" name="age" id="age" required placeholder="Range 1-100" max="100" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase font-bold text-xs text-grey-darkest" for="Gender">
+                                    Gender</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" name="gender" min="0" max="2" step="1" id="gender" required placeholder="Male - 1 | Female - 0 | Transgender - 2" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="tb">
+                                    Total Bilirubin</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" name="tb" id="tb" min="0" step="0.1" required placeholder="Range 0.1 - 1.2 mg/dL" max="5" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="db">
+                                    Direct Bilirubin</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" min="0" step="0.1" name="db" id="db" required placeholder="Range 0-0.3" max="5" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="ap">
+                                    Alkaline Phosphotase</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" min="0" step="1" name="ap" id="ap" required placeholder="Range 44-147 IU/L" max="200" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="aa">
+                                    Alamine Aminotransferase</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" min="0" step="1" name="aa" id="aa" required placeholder="Range 7-56 IU/L" max="100" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="asa">
+                                    Aspartate Aminotransferase</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" min="0" step="1" name="asa" id="asa" required placeholder="Range 10-40 IU/L" max="70" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="tp">
+                                    Total Proteins</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" min="0" step="0.1" name="tp" id="tp" required placeholder="Range 6.0-8.3 g/dL" max="10" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="ab">
+                                    Albumin</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" min="0" step="0.1" name="ab" id="ab" required placeholder="Range 3.5-5.0 g/dL" max="10" />
+                            </div>
+                            <div class="flex flex-col mb-4">
+                                <label class="mb-2 uppercase tracking-wide font-bold text-xs text-grey-darkest" for="ag">
+                                    Albumin and Globulin Ratio</label>
+                                <input class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-red-900 rounded border border-gray-600 focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    type="number" name="ag" id="ag" required placeholder="Range 1.0-2.5" max="5" min="0" step="0.01" />
+                            </div>
+                        </div>
+                        <div class="flex justify-start gap-4 mt-6 sticky bottom-0 bg-gray-900 py-2">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Submit
+                            </button>   
+                            </div>                     
+                    </form>
+                </div>
+            </div>
+
+            <!-- Report Section (Right) -->
+            <div id="report-section" class="w-full md:w-1/2 h-full">
+                <div class="flex border-2 rounded-lg border-yellow-300 bg-white p-8 h-full overflow-y-auto">
+                    <div class="w-full">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-2 sticky top-0 bg-white z-10">Report</h2>
+                            
+                            <!-- Result Display -->
+                        <div class="mb-8">
+                            {% if result == 0 %}
+                            <div class="p-4 bg-green-100 rounded-lg border border-green-300">
+                                <h3 class="text-lg font-medium text-green-800">No Liver Disease Detected</h3>
+                                <p class="text-green-600">Your test results appear to be within normal ranges.</p>
+                            </div>
+                            {% elif result == 1 %}
+                            <div class="p-4 bg-red-100 rounded-lg border border-red-300">
+                                <h3 class="text-lg font-medium text-red-800">Potential Liver Disease Detected</h3>
+                                <p class="text-red-600">Please consult a healthcare professional for further evaluation.</p>
+                            </div>
+                            {% else %}
+                            <div class="p-4 bg-blue-100 rounded-lg border border-blue-300">
+                                <h3 class="text-lg font-medium text-blue-800">Test Results</h3>
+                                <p class="text-blue-600">Submit your test values to get your liver health report.</p>
+                            </div>
+                            {% endif %}
+                            {% if values is defined %}
+                                <h3 class="text-xl font-semibold mt-4 mb-2">Submitted Values</h3>
+                            <ul class="list-disc ml-5 text-sm">
+        {% for key, value in values.items() %}
+            <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+                           
+                        </div>
+
+                        <!-- Reference Ranges -->
+                        <div class="mt-6">
+                            <h3 class="text-lg font-semibold text-yellow-700 mb-3">Biological Reference Ranges:</h3>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+
+                                    <span><strong>Total Bilirubin:</strong> 0.1 to 1.2 mg/dL (adults)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span><strong>Direct Bilirubin:</strong> 0.0 to 0.3 mg/dL</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span><strong>Alkaline Phosphatase:</strong><br>
+                                    - Adults: 44-147 IU/L<br>
+                                    - Children: Up to 350 IU/L</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span><strong>ALT (Alanine Aminotransferase):</strong><br>
+                                    - Men: 10-40 U/L<br>
+                                    - Women: 7-35 U/L</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span><strong>AST (Aspartate Aminotransferase):</strong> 8-48 U/L (adults)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span><strong>Total Protein:</strong> 6.0-8.3 g/dL (adults)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span><strong>Albumin:</strong> 3.5-5.0 g/dL (adults)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span><strong>A/G Ratio:</strong> 1.0-2.0 (slightly lower in elderly)</span>
+                                </li>
+                            </ul>
+                            <button type="button" class="inline-flex items-center px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <a title="print " alt="print"onclick="printReport()";target="_blank"style="cursor:pointer;">Print</a>
+                            </button>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div class="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200 sticky bottom-0">
+                            <h4 class="text-sm font-semibold text-yellow-800 mb-2">Important Notes:</h4>
+                            <p class="text-xs text-yellow-700">
+                                • Reference ranges may vary slightly by laboratory<br>
+                                • Values outside normal ranges don't always indicate disease<br>
+                                • Always consult with a healthcare professional for interpretation
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
